@@ -1,0 +1,27 @@
+{
+  "learn-http": {
+    "content": "Salve família"
+  },
+  "journals": [
+
+    {
+      "id": "cd7c9f20-a19c-11ed-83f4-a79f2402cb2b",
+      "content": "Voltando aos estudos! ",
+      "created_at": "2023-01-23 18:15:41.600553",
+      "updated_at": "2023-01-23 18:15:41.600553"
+    },
+    {
+      "id": "c356c480-a1a6-11ed-8a87-634f1092bfd2",
+      "content": "Nada como um dia apos o outro dia.",
+      "created_at": "2023-01-24 20:34:16.656033",
+      "updated_at": "2023-01-24 20:34:16.656033"
+    },
+    {
+      "id": "55b97350-a1ab-11ed-bdaf-e5f38ad8ef91",
+      "content": "Vamo acordar!\nVamo acordar!",
+      "created_at": "2023-01-26 21:07:09.731095",
+      "updated_at": "2023-01-26 21:07:09.731095"
+    }
+
+  ]
+}
