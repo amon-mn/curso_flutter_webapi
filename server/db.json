@@ -1,9 +1,15 @@
 {
+  "users": [
+    {
+      "email": "amonmenezes2@gmail.com",
+      "password": "$2a$10$66CdZ4AWl29xgVYqG8NnZuule78qkIZQ1QVeQxRIwsuzFRU04qk5O",
+      "id": 1
+    }
+  ],
   "learn-http": {
     "content": "Salve família"
   },
   "journals": [
-
     {
       "id": "cd7c9f20-a19c-11ed-83f4-a79f2402cb2b",
       "content": "Voltando aos estudos! ",
@@ -22,6 +28,5 @@
       "created_at": "2023-01-26 21:07:09.731095",
       "updated_at": "2023-01-26 21:07:09.731095"
     }
-
   ]
 }
