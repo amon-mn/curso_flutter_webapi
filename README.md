@@ -35,7 +35,7 @@
 **The main features of the application are:**
  * Creates and manages daily user notes.
  
- ![GIF animado demonstrando funcionalidades do projeto](https://github.com/amon-mn/curso_flutter_webapi/blob/aacd422b3e1dba979d71cdbd074f9a401b66ab3d/lib/assets/simple_journal.gif)
+ ![GIF animado demonstrando funcionalidades do projeto](https://github.com/amon-mn/simple_journal_webapi/blob/aacd422b3e1dba979d71cdbd074f9a401b66ab3d/lib/assets/simple_journal.gif)
  
  
  ## 🔗 Links
