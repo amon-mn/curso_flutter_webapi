@@ -42,7 +42,7 @@
   * Repository: https://github.com/amon-mn/curso_flutter_webapi
    
  
- ## 👨🏽‍💻 Authors
+ ## 🙋🏻‍♂️ Authors
 
   * **Amon Menezes Negreiros** 
 
