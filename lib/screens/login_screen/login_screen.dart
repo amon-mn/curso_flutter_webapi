@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_webapi_first_course/screens/commom/confirmation_dialog.dart';
 
 import '../../services/auth_service.dart';
+import '../commom/exception_dialog.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -19,7 +22,7 @@ class LoginScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.all(32),
         decoration:
-        BoxDecoration(border: Border.all(width: 8), color: Colors.white),
+            BoxDecoration(border: Border.all(width: 8), color: Colors.white),
         child: Form(
           child: Center(
             child: SingleChildScrollView(
@@ -34,8 +37,6 @@ class LoginScreen extends StatelessWidget {
                     "Simple Journal",
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
-                  const Text("por Alura",
-                      style: TextStyle(fontStyle: FontStyle.italic)),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Divider(thickness: 2),
@@ -58,7 +59,8 @@ class LoginScreen extends StatelessWidget {
                   ElevatedButton(
                       onPressed: () {
                         tryLogin(context);
-                      }, child: const Text("Continuar")),
+                      },
+                      child: const Text("Continuar")),
                 ],
               ),
             ),
@@ -72,25 +74,30 @@ class LoginScreen extends StatelessWidget {
     String email = _emailController.text;
     String password = _passController.text;
 
-    try {
-      String token = await service.login(email: email, password: password);
+    service.login(email: email, password: password).then((token) {
       Navigator.pushReplacementNamed(context, 'home');
-    } on UserNotFoundException {
+    }).catchError((error) {
       showConfirmationDialog(
         context,
         title: "Usuário ainda não existe",
         content: "Deseja criar um novo usuário com email $email?",
         affirmativeOption: "Criar",
-      ).then(
-            (value) async {
-          if (value) {
-            //TODO: Tratar caso do usuário não existente
-            String token = await service.register(
-                email: email, password: password);
+      ).then((value) async {
+        if (value) {
+          service.register(email: email, password: password).then((token) {
             Navigator.pushReplacementNamed(context, 'home');
-          }
-        },
-      );
-    }
+          });
+        }
+      });
+    }, test: (error) => error is UserNotFoundException).catchError((error) {
+      HttpException exception = error as HttpException;
+      showExceptionDialog(context, content: exception.message);
+    }, test: (error) => error is HttpException);
   }
 }
+
+/*
+
+amonmenezes2@gmail.com
+123321
+ */

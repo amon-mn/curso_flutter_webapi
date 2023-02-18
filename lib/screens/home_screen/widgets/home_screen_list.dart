@@ -11,29 +11,34 @@ List<JournalCard> generateListJournalCards({
   // Cria uma lista de Cards vazios
   List<JournalCard> list = List.generate(
     windowPage + 1,
-    (index) => JournalCard(
+        (index) => JournalCard(
       userId: userId,
-      showedDate: currentDay.subtract(Duration(days: (windowPage) - index)),
       refreshFunction: refreshFunction,
+      showedDate: currentDay.subtract(Duration(
+        days: (windowPage) - index,
+      )),
     ),
   );
 
   //Preenche os espaços que possuem entradas no banco
-  database.forEach((key, value) {
-    if (value.createdAt
-        .isAfter(currentDay.subtract(Duration(days: windowPage)))) {
-      int difference = value.createdAt
-          .difference(currentDay.subtract(Duration(days: windowPage)))
-          .inDays
-          .abs();
+  database.forEach(
+        (key, value) {
+      if (value.createdAt
+          .isAfter(currentDay.subtract(Duration(days: windowPage)))) {
+        int difference = value.createdAt
+            .difference(currentDay.subtract(Duration(days: windowPage)))
+            .inDays
+            .abs();
 
-      list[difference] = JournalCard(
-        userId: userId,
-        showedDate: list[difference].showedDate,
-        journal: value,
-        refreshFunction: refreshFunction,
-      );
-    }
-  });
+        list[difference] = JournalCard(
+          userId: userId,
+          showedDate: list[difference].showedDate,
+          journal: value,
+          refreshFunction: refreshFunction,
+        );
+      }
+    },
+  );
   return list;
 }
+

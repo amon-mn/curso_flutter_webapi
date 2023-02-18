@@ -14,19 +14,19 @@ class Journal {
       required this.updatedAt,
       required this.userId});
 
-  Journal.empty({required String id})
+  Journal.empty({required this.userId})
       : id = const Uuid().v1(),
         content = "",
         createdAt = DateTime.now(),
-        updatedAt = DateTime.now(),
-        userId = id;
+        updatedAt = DateTime.now();
+        
 
   Journal.fromMap(Map<String, dynamic> map)
       : id = map["id"],
         content = map["content"],
         createdAt = DateTime.parse(map["created_at"]),
         updatedAt = DateTime.parse(map["updated_at"]),
-        userId = map['userId'];
+        userId = map['userId'].toString();
 
   Map<String, dynamic> toMap() {
     return {

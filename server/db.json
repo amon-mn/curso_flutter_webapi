@@ -4,6 +4,21 @@
       "email": "amonmenezes2@gmail.com",
       "password": "$2a$10$66CdZ4AWl29xgVYqG8NnZuule78qkIZQ1QVeQxRIwsuzFRU04qk5O",
       "id": 1
+    },
+    {
+      "email": "amonmenezes1@gmail.com",
+      "password": "$2a$10$ZQp/zkG7JcpdqLr/jUSZMO0HHghZutL3XWqTnsoA6kBrgh8TywqFG",
+      "id": 2
+    },
+    {
+      "email": "amonmenezes31@gmail.com",
+      "password": "$2a$10$3f4qdcnjDWawm5GheH6RJeMMDM16lvl2yVZl/cpUAuiG6sLpuQCGK",
+      "id": 3
+    },
+    {
+      "email": "amonmenezes15@gmail.com",
+      "password": "$2a$10$EZL4oFEGAxkVkqLkGAmlvOGHMGzQ2LGD0/CYtHWhC6ZZPFQl5CZzW",
+      "id": 4
     }
   ],
   "learn-http": {
@@ -20,8 +35,8 @@
     {
       "id": "c356c480-a1a6-11ed-8a87-634f1092bfd2",
       "content": "Nada como um dia apos o outro dia.",
-      "created_at": "2023-01-24 20:34:16.656033",
-      "updated_at": "2023-01-24 20:34:16.656033",
+      "created_at": "2023-02-14 20:34:16.656033",
+      "updated_at": "2023-02-14 20:34:16.656033",
       "userId": 2
     },
     {
@@ -30,6 +45,13 @@
       "created_at": "2023-02-2 21:07:09.731095",
       "updated_at": "2023-02-6 21:07:09.731095",
       "userId": 1
+    },
+    {
+      "id": "02427ec0-afbf-11ed-be01-d7660c994412",
+      "content": "Essa eh uma entrada de amonmenzes31",
+      "created_at": "2023-02-11 19:03:55.378880",
+      "updated_at": "2023-02-11 19:03:55.378880",
+      "userId": "3"
     }
   ]
 }

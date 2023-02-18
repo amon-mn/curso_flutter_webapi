@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_webapi_first_course/screens/home_screen/widgets/home_screen_list.dart';
-import 'package:flutter_webapi_first_course/services/journal_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../models/journal.dart';
+import '../../services/journal_service.dart';
+import 'widgets/home_screen_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Map<String, Journal> database = {};
 
   final ScrollController _listScrollController = ScrollController();
-
   final JournalService _journalService = JournalService();
 
   String userId = '';
@@ -44,9 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
           "${currentDay.day}  |  ${currentDay.month}  |  ${currentDay.year}",
         ),
         actions: [
-          IconButton(onPressed: (){
-            refresh();
-    }, icon: const Icon(Icons.refresh)),
+          IconButton(
+            onPressed: () {
+              refresh();
+            },
+            icon: const Icon(
+              Icons.refresh,
+            ),
+          ),
         ],
       ),
       body: ListView(
@@ -85,7 +87,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-
   void refresh() async {
     SharedPreferences.getInstance().then((prefs) {
       String? token = prefs.getString('accessToken');
@@ -113,5 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     });
   }
-
 }
+
+
+

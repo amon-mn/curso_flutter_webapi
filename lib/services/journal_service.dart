@@ -1,20 +1,18 @@
 import 'dart:convert';
-
+import 'dart:io';
 import 'package:flutter_webapi_first_course/models/journal.dart';
-import 'package:flutter_webapi_first_course/services/http_interceptors.dart';
+import 'package:flutter_webapi_first_course/services/web_client.dart';
 import 'package:http/http.dart' as http;
-import 'package:http_interceptor/http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class JournalService {
-  static const String url = "http://10.0.0.113:3000/";
-  static const String resource = "journals/";
 
-  http.Client client =
-      InterceptedClient.build(interceptors: [LoggingInterceptor()]);
+  static const String resource = "journals/";
+  http.Client client = WebClient().client;
+
 
   String getUrl() {
-    return "$url$resource";
+    return "${WebClient.url}$resource";
   }
 
   Uri getUri() {
@@ -32,10 +30,10 @@ class JournalService {
         },
         body: jsonJournal);
 
-    if (response.statusCode == 201) {
-      return true;
+    if (response.statusCode != 201) {
+      verifyException(json.decode(response.body));
     }
-    return false;
+    return true;
   }
 
   Future<bool> edit(String id, Journal journal) async {
@@ -49,39 +47,38 @@ class JournalService {
         },
         body: jsonJournal);
 
-    if (response.statusCode == 200) {
-      return true;
+    if (response.statusCode != 200) {
+      verifyException(json.decode(response.body));
     }
 
-    return false;
+    return true;
   }
 
   Future<bool> delete(String id) async {
     String token = await getToken();
     http.Response response =
-        await http.delete(Uri.parse("${getUrl()}$id"), headers: {
+        await client.delete(Uri.parse("${getUrl()}$id"), headers: {
       'Content-type': 'application/json',
       'Authorization': 'Bearer $token',
     });
 
-    if (response.statusCode == 200) {
-      return true;
+    if (response.statusCode != 200) {
+      verifyException(json.decode(response.body));
     }
 
-    return false;
+    return true;
   }
 
   Future<List<Journal>> getAll(String id) async {
     String token = await getToken();
 
     http.Response response =
-        await client.get(Uri.parse("${url}users/$id/$resource"), headers: {
+        await client.get(Uri.parse("${WebClient.url}users/$id/$resource"), headers: {
       'Content-type': 'application/json',
       'Authorization': 'Bearer $token',
     });
     if (response.statusCode != 200) {
-      //TODO: Criar uma exceção personalizada
-      throw Exception();
+      verifyException(json.decode(response.body));
     }
 
     List<Journal> journalsList = [];
@@ -101,4 +98,16 @@ class JournalService {
     }
     return '';
   }
+
+  verifyException(String error) {
+    switch (error) {
+      case 'jwt expired':
+        throw TokenExpiredException();
+    }
+
+    throw HttpException(error);
+  }
+
 }
+
+class TokenExpiredException implements Exception {}
