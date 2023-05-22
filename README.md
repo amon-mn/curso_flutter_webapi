@@ -40,7 +40,7 @@
  
  
  ## 🔗 Links
-  * Repository: https://github.com/amon-mn/curso_flutter_webapi
+  * Repository: https://github.com/amon-mn/simple_journal_webapi
    
  
  ## 🙋🏻‍♂️ Authors
